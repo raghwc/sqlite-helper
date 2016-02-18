@@ -8,7 +8,6 @@
         $(document).ready(function () {
             try {
 
-                //DashOffLine.DataBase = window.openDatabase(GetPlatformName(), '1.0', GetPlatformName() + ' DataBase', (50 * 1024 * 1024), function (dataBase) { });
                 sqliteh.dataBase = window.openDatabase("testDb", '1.0', 'new DataBase', (50 * 1024 * 1024), function (dataBase) { });
                 console.log("sqlcipher Plugin >" + window.sqlcipherPlugin);
             }
