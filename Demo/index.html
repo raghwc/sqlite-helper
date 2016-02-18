@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="js/sqlite-helper.js"></script>
+    <script>
+        $(document).ready(function () {
+            try {
+
+                //DashOffLine.DataBase = window.openDatabase(GetPlatformName(), '1.0', GetPlatformName() + ' DataBase', (50 * 1024 * 1024), function (dataBase) { });
+                sqliteh.dataBase = window.openDatabase("testDb", '1.0', 'new DataBase', (50 * 1024 * 1024), function (dataBase) { });
+                console.log("sqlcipher Plugin >" + window.sqlcipherPlugin);
+            }
+            catch (error) {
+                console.log("sqllite not working please check your connection string.");
+            }
+        });
+
+        function createTable() {
+            // * execute sql query
+            sqliteh.executeSql("CREATE TABLE IF NOT EXISTS tblTest (     \
+                SystemID INT NOT NULL,                                  \
+                DisplayName VARCHAR(50) NOT NULL,                       \
+                PRIMARY KEY (SystemID))", []);
+        }
+
+        function insertQueryTable() {
+            // * execute sql query
+            sqliteh.executeSql("INSERT INTO tblTest (SystemID, DisplayName)", [1, "testing"]);
+        }
+
+        function builkinsert() {
+            sqliteh.bulkExecuteSql("tblTest", [{ id: 1, val: "test" }, { id: 2, val: "434" }],
+                function (index, item) {
+                    return {
+                        SystemID: item.id,
+                        DisplayName: item.val
+                    };
+                });
+        }
+
+        function TableToList() {
+            sqliteh.executeSql("SELECT * FROM tblTest", [], function (result) {
+                $(".tabletolist").html(JSON.stringify(result.toList()));
+            },
+            function () {
+                debugger;
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>Create table</h1>
+    <p><a onclick="createTable();">CreateTable</a></p>
+    <h1>Insert table</h1>
+    <p><a onclick="createTable();">insert Table</a></p>
+    <h1>Builk Insert table</h1>
+    <p><a onclick="builkinsert();">Builk Create Table</a></p>
+    <h1>table to list</h1>
+    <p><a onclick="TableToList();">Table to list convert</a></p>
+    <p class="tabletolist"></p>
+</body>
+</html>
