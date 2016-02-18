@@ -1,5 +1,13 @@
 # sqlite-helper
 <p>sqlite bulk insertion and easy to user insert query.</p>
+<ul>
+<li>Easy to Create table</li>
+<li>Easy to Insert records</li>
+<li>bulk insertion</li>
+<li>Select record get in list</li>
+<li>Data table to list converter function</li>
+<li>List to string converter</li>
+</ul>
 #How to integrate plugin
 Library reference
 ```#
