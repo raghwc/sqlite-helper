@@ -29,8 +29,16 @@ sqliteh.executeSql("<Table Create script>", []);
                 DisplayName VARCHAR(50) NOT NULL,             \
                 PRIMARY KEY (SystemID))", []);
 ```
+##Insert Records
+#Insert Records Syntax & Example
+```#
+/** Syntax **/
+sqliteh.executeSql("<Table insert script>", [<value,n+>], <success event>, <failed Event>);
+                
+ /*Example*/
+  sqliteh.executeSql("INSERT INTO tblTest (SystemID, DisplayName)", [1, "testing"]);
+```
 ## Sqlite bulk insertion
-easy to use for sqlite bulk insertion
 
 #Sqlite Bulk Insertion Syntax & Example
 ```#
@@ -45,5 +53,46 @@ sqliteh.bulkExecuteSql("tblTest", [{ id: 1, val: "test" }, { id: 2, val: "434" }
                         DisplayName: item.val
                     };
                 });
+```
+##Select Records
+#Select Records Syntax & Example
+```#
+/** Syntax **/
+sqliteh.executeSql("<Table select script>", [(where value)<value,n+>], <success event>, <failed Event>);
                 
+ /*Example*/
+ sqliteh.executeSql("SELECT * FROM tblTest", [], function (result) {
+                console.log(result.toList());
+            },
+            function () {
+                console.log("failed message");
+            });
+```
+
+#Data Table to list Syntax & Example
+```#
+/** Syntax **/
+var dataList = sqliteh.tableToList(<pass sqlite result>);
+                
+ /*Example*/
+ sqliteh.executeSql("SELECT * FROM tblTest", [], function (result) {
+				var dataList = sqliteh.tableToList(result);
+            },
+            function () {
+                console.log("failed message");
+            });
+ 
+```
+
+#List to string Syntax & Example
+```#
+/** Syntax **/
+var dataList = sqliteh.listToString([]);
+                
+ /*Example*/
+ var dataList = sqliteh.listToString([3,5,6,7,8,2]);
+ console.log(dataList);
+
+ /*Output*/
+ "3,5,6,7,8,2"
 ```
