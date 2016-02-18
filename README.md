@@ -3,10 +3,10 @@
 <ul>
 <li>Easy to Create table</li>
 <li>Easy to Insert records</li>
-<li>bulk insertion</li>
-<li>Select record get in list</li>
-<li>Data table to list converter function</li>
-<li>List to string converter</li>
+<li>Bulk insertion</li>
+<li>Convert record set into list object using .toList() extension method.</li>
+<li>Convert record set into list object as an external method.</li>
+<li>List to CSV string converter</li>
 </ul>
 #How to integrate plugin
 Library reference
@@ -24,9 +24,8 @@ Library reference
             }
         });
 ```
-##Create table with sqlite-helper
-<p>how to create table</p>
-#Create Table Syntax & Example
+
+#Create Table with sqlite-helper Syntax & Example
 ```#
 /** Syntax **/
 sqliteh.executeSql("<Table Create script>", []);
@@ -37,8 +36,8 @@ sqliteh.executeSql("<Table Create script>", []);
                 DisplayName VARCHAR(50) NOT NULL,             \
                 PRIMARY KEY (SystemID))", []);
 ```
-##Insert Records
-#Insert Records Syntax & Example
+
+#Insert Records with sqlite-helper Syntax & Example
 ```#
 /** Syntax **/
 sqliteh.executeSql("<Table insert script>", [<value,n+>], <success event>, <failed Event>);
@@ -46,9 +45,8 @@ sqliteh.executeSql("<Table insert script>", [<value,n+>], <success event>, <fail
  /*Example*/
   sqliteh.executeSql("INSERT INTO tblTest (SystemID, DisplayName)", [1, "testing"]);
 ```
-## Sqlite bulk insertion
 
-#Sqlite Bulk Insertion Syntax & Example
+#Sqlite Bulk Insertion with sqlite-helper Syntax & Example
 ```#
 /** Syntax **/
 sqliteh.bulkExecuteSql("<tableName>", <ArrayList>, <map column> });
@@ -62,8 +60,8 @@ sqliteh.bulkExecuteSql("tblTest", [{ id: 1, val: "test" }, { id: 2, val: "434" }
                     };
                 });
 ```
-##Select Records
-#Select Records Syntax & Example
+
+#Select Records with sqlite-helper Syntax & Example
 ```#
 /** Syntax **/
 sqliteh.executeSql("<Table select script>", [(where value)<value,n+>], <success event>, <failed Event>);
@@ -77,7 +75,7 @@ sqliteh.executeSql("<Table select script>", [(where value)<value,n+>], <success 
             });
 ```
 
-#Data Table to list Syntax & Example
+#Data Table to list with sqlite-helper Syntax & Example
 ```#
 /** Syntax **/
 var dataList = sqliteh.tableToList(<pass sqlite result>);
@@ -92,7 +90,7 @@ var dataList = sqliteh.tableToList(<pass sqlite result>);
  
 ```
 
-#List to string Syntax & Example
+#List to CSV string with sqlite-helper Syntax & Example
 ```#
 /** Syntax **/
 var dataList = sqliteh.listToString([]);
